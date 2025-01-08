@@ -1,9 +1,11 @@
 from django.urls import path
-from .views import RegisterVendor, RegisterCustomer, Login, RegisteredUsersView
+from .views import HomePageView, RegisterVendor, RegisterCustomer, Login, UpdateCustomerProfile,  UpdateVendorProfileView
 
 urlpatterns = [
     path('register/vendor/', RegisterVendor.as_view(), name='register_vendor'),
     path('register/customer/', RegisterCustomer.as_view(), name='register_customer'),
     path('login/', Login.as_view(), name='login'),
-    path('viewuser/',RegisteredUsersView.as_view(), name='registered_users_view'),
+    path('home/', HomePageView.as_view(), name='home'),  # Home page after login
+    path('profile/vendor/', UpdateVendorProfileView.as_view(), name='update_vendor_profile'),
+    path('profile/customer/', UpdateCustomerProfile.as_view(), name='update_customer_profile'),
 ]

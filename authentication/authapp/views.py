@@ -9,6 +9,13 @@ from .models import Vendor, Customer
 from .serializers import VendorSerializer, CustomerSerializer, UserSerializer
 from rest_framework.permissions import IsAuthenticated
 
+from django.shortcuts import render, redirect
+from django.views import View
+from django.contrib.auth import login
+from django.http import HttpResponse
+from .models import Vendor, Customer
+from social_django.models import UserSocialAuth
+
 # Generate JWT tokens
 def get_tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
@@ -90,8 +97,8 @@ class Login(APIView):
         #     #return redirect('home')  # Redirect to home page after successful login
 
         return Response({"detail": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
+    
 
-     
 # Home Page
 class HomePageView(APIView):
     # permission_classes = [IsAuthenticated]

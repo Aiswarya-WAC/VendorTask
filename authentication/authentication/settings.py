@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SITE_ID = 2
+
 
 # Application definition
 
@@ -41,7 +43,24 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
+    'social_django',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
+
+SOCIAL_ACCOUNT_PROVIDERS ={
+    "google" :{
+        "SCOPE" :[
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS" : {"access_type": "online"},
+        'OAUTH_PKCE_ENABLED': True,
+    }
+}
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -56,6 +75,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'authentication.urls'
@@ -130,3 +150,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTHENTICATION_BACKENDS = (
+ 
+    'django.contrib.auth.backends.ModelBackend', 
+    'allauth.account.auth_backends.AuthenticationBackend' # Default auth backend
+)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '254321111421-fa7bh8chvi0dnutg0020eu9ldqnr7boe.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+LOGIN_REDIRECT_URL = '/' 
+LOGOUT_REDIRECT_URL = '/'

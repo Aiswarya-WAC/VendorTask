@@ -20,6 +20,12 @@
 </head>
 <body>
     <h1>Customer Registration</h1>
+
+    {% load socialaccount %}
+
+    <h2>Google login</h2>
+    <a href="{% provider_login_url 'google' %}?next=/">Login with Google</a>
+
     <form method="post" action="{% url 'register_customer' %}">
         {% csrf_token %}
         <table>
@@ -52,7 +58,11 @@
                     <button type="submit">Register</button>
                 </td>
             </tr>
+
+
         </table>
     </form>
+
+</a>
 </body>
 </html>

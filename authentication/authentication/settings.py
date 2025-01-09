@@ -157,8 +157,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend' # Default auth backend
 )
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '254321111421-fa7bh8chvi0dnutg0020eu9ldqnr7boe.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
 
 LOGIN_REDIRECT_URL = '/' 
 LOGOUT_REDIRECT_URL = '/'
